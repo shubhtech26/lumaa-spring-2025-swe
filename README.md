@@ -1,119 +1,164 @@
-# Full-Stack Coding Challenge
-
-**Deadline**: Sunday, Feb 23th 11:59 pm PST
-
----
+# Task Management Application
 
 ## Overview
+This is a full-stack **Task Management Application** built with:
+- **Frontend**: React + TypeScript
+- **Backend**: Node.js + Express
+- **Database**: PostgreSQL
 
-Create a “Task Management” application with **React + TypeScript** (frontend), **Node.js** (or **Nest.js**) (backend), and **PostgreSQL** (database). The application should:
-
-1. **Register** (sign up) and **Log in** (sign in) users.
-2. After logging in, allow users to:
-   - **View a list of tasks**.
-   - **Create a new task**.
-   - **Update an existing task** (e.g., mark complete, edit).
-   - **Delete a task**.
-
-Focus on **correctness**, **functionality**, and **code clarity** rather than visual design.  
-This challenge is intended to be completed within ~3 hours, so keep solutions minimal yet functional.
+The application allows users to:
+- **Register** and **Log in**.
+- **View**, **create**, **update**, and **delete tasks**.
 
 ---
 
-## Requirements
+## Features
 
 ### 1. Authentication
+- Register a new user.
+- Log in with an existing user.
+- Securely hash passwords using `bcrypt`.
+- Protect task routes using JWT (JSON Web Tokens).
 
-- **User Model**:
-  - `id`: Primary key
-  - `username`: Unique string
-  - `password`: Hashed string
-- **Endpoints**:
-  - `POST /auth/register` – Create a new user
-  - `POST /auth/login` – Login user, return a token (e.g., JWT)
-- **Secure the Tasks Routes**: Only authenticated users can perform task operations.  
-  - **Password Hashing**: Use `bcrypt` or another hashing library to store passwords securely.
-  - **Token Verification**: Verify the token (JWT) on each request to protected routes.
-
-### 2. Backend (Node.js or Nest.js)
-
-- **Tasks CRUD**:  
-  - `GET /tasks` – Retrieve a list of tasks (optionally filtered by user).  
-  - `POST /tasks` – Create a new task.  
-  - `PUT /tasks/:id` – Update a task (e.g., mark as complete, edit text).  
-  - `DELETE /tasks/:id` – Delete a task.
-- **Task Model**:
-  - `id`: Primary key
-  - `title`: string
-  - `description`: string (optional)
-  - `isComplete`: boolean (default `false`)
-  - _(Optional)_ `userId` to link tasks to the user who created them
-- **Database**: PostgreSQL
-  - Provide instructions/migrations to set up:
-    - `users` table (with hashed passwords)
-    - `tasks` table
-- **Setup**:
-  - `npm install` to install dependencies
-  - `npm run start` (or `npm run dev`) to run the server
-  - Document any environment variables (e.g., database connection string, JWT secret)
-
-### 3. Frontend (React + TypeScript)
-
-- **Login / Register**:
-  - Simple forms for **Register** and **Login**.
-  - Store JWT (e.g., in `localStorage`) upon successful login.
-  - If not authenticated, the user should not see the tasks page.
-- **Tasks Page**:
-  - Fetch tasks from `GET /tasks` (including auth token in headers).
-  - Display the list of tasks.
-  - Form to create a new task (`POST /tasks`).
-  - Buttons/fields to update a task (`PUT /tasks/:id`).
-  - Button to delete a task (`DELETE /tasks/:id`).
-- **Navigation**:
-  - Show `Login`/`Register` if not authenticated.
-  - Show `Logout` if authenticated.
-- **Setup**:
-  - `npm install` then `npm start` (or `npm run dev`) to run.
-  - Document how to point the frontend at the backend (e.g., `.env` file, base URL).
+### 2. Tasks CRUD
+- View a list of tasks.
+- Create a new task.
+- Update an existing task (e.g., mark as complete, edit text).
+- Delete a task.
 
 ---
 
-## Deliverables
 
-1. **Fork the Public Repository**: **Fork** this repo into your own GitHub account.
-2. **Implement Your Solution** in the forked repository. Make sure you're README file has:
-   - Steps to set up the database (migrations, environment variables).
-   - How to run the backend.
-   - How to run the frontend.
-   - Any relevant notes on testing.
-   - Salary Expectations per month (Mandatory)
-3. **Short Video Demo**: Provide a link (in a `.md` file in your forked repo) to a brief screen recording showing:
-   - Registering a user
-   - Logging in
-   - Creating, updating, and deleting tasks
-4. **Deadline**: Submissions are due **Sunday, Feb 23th 11:59 pm PST**.
+## Setup Instructions
 
-> **Note**: Please keep your solution minimal. The entire project is intended to be completed in around 3 hours. Focus on core features (registration, login, tasks CRUD) rather than polished UI or extra features.
+### Prerequisites
+1. **Node.js**: Install from [here](https://nodejs.org/).
+2. **PostgreSQL**: Install from [here](https://www.postgresql.org/download/).
+
+### Step 1: Set Up the Database
+
+1. Access the PostgreSQL CLI:
+   ```bash
+   psql postgres
+   ```
+2. Create a new database:
+   ```sql
+   CREATE DATABASE taskdb;
+   ```
+3. Create a new user with a password:
+   ```sql
+   CREATE USER taskuser WITH PASSWORD 'password';
+   ```
+4. Grant privileges to the user:
+   ```sql
+   GRANT ALL PRIVILEGES ON DATABASE taskdb TO taskuser;
+   GRANT ALL PRIVILEGES ON SCHEMA public TO taskuser;
+   GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO taskuser;
+   GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO taskuser;
+   ```
+5. Exit the PostgreSQL CLI:
+   ```sql
+   \q
+   ```
 
 ---
 
-## Evaluation Criteria
+### Step 2: Set Up the Backend
 
-1. **Functionality**  
-   - Does registration and login work correctly (with password hashing)?
-   - Are tasks protected by authentication?
-   - Does the tasks CRUD flow work end-to-end?
+1. Navigate to the backend folder:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file in the backend folder and add the following:
+   ```env
+   DATABASE_URL=
+   JWT_SECRET=
+   PORT=
+   ```
+   Replace `taskuser`, `password`, and `your_jwt_secret_key` with actual values.
+4. Start the backend server:
+   ```bash
+   npm run start
+   ```
 
-2. **Code Quality**  
-   - Is the code structured logically and typed in TypeScript?
-   - Are variable/function names descriptive?
+---
 
-3. **Clarity**  
-   - Is the `README.md` (in your fork) clear and detailed about setup steps?
-   - Easy to run and test?
+### Step 3: Set Up the Frontend
 
-4. **Maintainability**  
-   - Organized logic (controllers/services, etc.)
-   - Minimal hard-coded values
+1. Navigate to the frontend folder:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file in the frontend folder and add the following:
+   ```env
+   REACT_APP_API_URL=http://localhost:3001
+   ```
+   Replace `http://localhost:3001` with the URL where your backend server is running.
+4. Start the frontend application:
+   ```bash
+   npm start
+   ```
 
-Good luck, and we look forward to your submission!
+---
+
+### Step 4: Test the Application
+
+1. Open the frontend application in your browser (usually at `http://localhost:3000`).
+2. Register a new user using the **Register** form.
+3. Log in with the registered user.
+4. Perform the following actions:
+   - **Create a new task**.
+   - **View the list of tasks**.
+   - **Update a task** (e.g., mark as complete, edit text).
+   - **Delete a task**.
+
+---
+
+## Video Demo
+Watch the video demo here: `[Insert Link Here]`
+
+---
+
+## Troubleshooting
+
+### 1. Database Connection Issues:
+- Ensure PostgreSQL is running.
+- Verify the database credentials in the `.env` file.
+
+### 2. Frontend-Backend Communication:
+- Ensure the backend server is running and accessible at the URL specified in `REACT_APP_API_URL`.
+
+---
+
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+## Notes
+- **Backend**: Built with Node.js and Express.
+- **Frontend**: Built with React and TypeScript.
+- **Authentication**: Handled using JWT.
+- **Database**: PostgreSQL with proper user privileges.
+
+---
+
+## Salary Expectations
+My monthly salary expectation is 20$/hr or 2000$/month
+
+Video Demo : https://drive.google.com/file/d/1hFulm5DsTtf6n1oldvWU2E-Y7FW-WtaL/view?usp=drive_link
+My contact information
+Shubhendra Singh
+shubhendra.singh@gwu.edu
+
+
+
+
