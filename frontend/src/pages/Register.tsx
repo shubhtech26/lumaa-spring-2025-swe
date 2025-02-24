@@ -1,4 +1,3 @@
-// Register.tsx
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import apiClient from '../api/client';
@@ -19,6 +18,12 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    if (!username.trim() || !password.trim()) {
+      setError('Username and Password are required');
+      return;
+    }
+
     try {
       await apiClient.post('/auth/register', { username, password });
       setShowSuccess(true);
@@ -101,7 +106,7 @@ export default function Register() {
           width: '100%',
           maxWidth: '300px'
         }}>
-          {/* Form inputs remain the same */}
+          {/* Username Input */}
           <div style={{ 
             display: 'flex', 
             flexDirection: 'column', 
@@ -113,7 +118,7 @@ export default function Register() {
               color: '#4a5568',
               textAlign: 'left'
             }}>
-              Username
+              Username <span style={{ color: 'red' }}>*</span>
             </label>
             <input
               type="text"
@@ -127,9 +132,11 @@ export default function Register() {
                 width: '100%'
               }}
               placeholder="Choose a username"
+              required
             />
           </div>
 
+          {/* Password Input */}
           <div style={{ 
             display: 'flex', 
             flexDirection: 'column', 
@@ -141,7 +148,7 @@ export default function Register() {
               color: '#4a5568',
               textAlign: 'left'
             }}>
-              Password
+              Password <span style={{ color: 'red' }}>*</span>
             </label>
             <input
               type="password"
@@ -155,6 +162,7 @@ export default function Register() {
                 width: '100%'
               }}
               placeholder="Create a password"
+              required
             />
           </div>
 
