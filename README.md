@@ -123,7 +123,7 @@ The application allows users to:
 ---
 
 ## Video Demo
-Watch the video demo here: `https://drive.google.com/file/d/1hFulm5DsTtf6n1oldvWU2E-Y7FW-WtaL/view?usp=drive_link`
+Watch the video demo here: https://drive.google.com/file/d/1hFulm5DsTtf6n1oldvWU2E-Y7FW-WtaL/view?usp=drive_link
 
 ---
 
