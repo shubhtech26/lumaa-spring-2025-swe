@@ -123,7 +123,7 @@ The application allows users to:
 ---
 
 ## Video Demo
-Watch the video demo here: `[Insert Link Here]`
+Watch the video demo here: `https://drive.google.com/file/d/1hFulm5DsTtf6n1oldvWU2E-Y7FW-WtaL/view?usp=drive_link`
 
 ---
 
@@ -154,10 +154,7 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 ## Salary Expectations
 My monthly salary expectation is 20$/hr or 2000$/month
 
-Video Demo : https://drive.google.com/file/d/1hFulm5DsTtf6n1oldvWU2E-Y7FW-WtaL/view?usp=drive_link
-My contact information
-Shubhendra Singh
-shubhendra.singh@gwu.edu
+
 
 
 
