@@ -79,7 +79,6 @@ The application allows users to:
    JWT_SECRET=
    PORT=
    ```
-   Replace `taskuser`, `password`, and `your_jwt_secret_key` with actual values.
 4. Start the backend server:
    ```bash
    node index.js
