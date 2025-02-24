@@ -82,7 +82,7 @@ The application allows users to:
    Replace `taskuser`, `password`, and `your_jwt_secret_key` with actual values.
 4. Start the backend server:
    ```bash
-   npm run start
+   node index.js
    ```
 
 ---
