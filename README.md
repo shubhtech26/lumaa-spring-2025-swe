@@ -104,7 +104,7 @@ The application allows users to:
    Replace `http://localhost:3001` with the URL where your backend server is running.
 4. Start the frontend application:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ---
