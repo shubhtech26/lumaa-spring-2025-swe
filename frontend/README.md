@@ -1,10 +1,19 @@
-Set Up the Frontend
-Navigate to the frontend folder:
-cd frontend
-Install dependencies:
-npm install
-Create a .env file in the frontend folder and add the following:
-REACT_APP_API_URL=http://localhost:3001
-Replace http://localhost:3001 with the URL where your backend server is running.
-Start the frontend application:
-npm start
+### Step 3: Set Up the Frontend
+
+1. Navigate to the frontend folder:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file in the frontend folder and add the following:
+   ```env
+   REACT_APP_API_URL=http://localhost:3001
+   ```
+   Replace `http://localhost:3001` with the URL where your backend server is running.
+4. Start the frontend application:
+   ```bash
+   npm start
+   ```
